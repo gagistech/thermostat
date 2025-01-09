@@ -1,0 +1,31 @@
+= build  instructions
+
+== debian/ubuntu linux
+
+. configure dependency repos
++
+- `cppfw`: https://github.com/cppfw/wiki/blob/master/enable_repo/enable_repo_debian.adoc
+- `llvm`: https://apt.llvm.org/
+
+. install dependencies, see list of packages in `debian/control.in` -> `Build-Depends:`
++
+....
+sudo apt update
+sudo apt install <packages>
+....
+
+. fetch git submodules
++
+....
+git submodule update --remote --init
+....
+
+. build the app
+....
+make
+....
+
+. run the app
+....
+make run-app
+....
