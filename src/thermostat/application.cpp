@@ -40,7 +40,7 @@ application::application(bool window, std::string_view res_path) :
 		"thermostat"s,
 		[]() {
 			// NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers)
-			ruisapp::window_params wp(r4::vector2<unsigned>(1024, 600));
+			ruisapp::window_params wp(r4::vector2<unsigned>(1080, 1080));
 			return wp;
 		}()
 	),
