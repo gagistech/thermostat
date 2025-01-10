@@ -21,30 +21,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <ruis/util/timer.hpp>
 #include <ruisapp/application.hpp>
-
-#include "spo2/spo2_sensor.hpp"
-
-#include "menu.hpp"
-#include "settings.hpp"
 
 namespace thermostat {
 
 class application : public ruisapp::application
 {
-	std::shared_ptr<ruis::container> menu_area;
-	std::shared_ptr<thermostat::menu> menu;
-
-	std::unique_ptr<spo2_sensor> fake_spo2_sensor_v;
-	std::unique_ptr<spo2_sensor> real_spo2_sensor_v;
-
-	// timer for updating clock view once a second
-	std::shared_ptr<ruis::timer> clock_timer;
-
 public:
-	thermostat::settings_storage settings_storage;
-
 	const std::string res_path;
 
 	application(bool window, std::string_view res_path);
@@ -54,11 +37,6 @@ public:
 		// NOLINTNEXTLINE(cppcoreguidelines-pro-type-static-cast-downcast, "here we are 100% sure the cast is safe")
 		return static_cast<application&>(ruisapp::application::inst());
 	}
-
-	void open_menu(utki::shared_ref<thermostat::menu> menu);
-	void close_menu();
-
-	void load_language(size_t index);
 };
 
 std::unique_ptr<application> create_application(std::string_view executable, utki::span<const char*> args);
