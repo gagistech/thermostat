@@ -14,10 +14,12 @@ this__root_dir_rel := ../
 
 this__version_cpp := $(this_out_dir)version.cpp
 
-this_srcs += $(this__version_cpp) $(filter-out main.cpp,$(call prorab-src-dir, thermostat))
+this_srcs += $(this__version_cpp) $(filter-out %main.cpp,$(call prorab-src-dir, $(this_name)))
 
 this_no_install := true
 this_static_lib_only := true
+
+$(info this_srcs = $(this_srcs))
 
 $(eval $(prorab-build-lib))
 
@@ -37,18 +39,18 @@ $(eval $(prorab-license))
 
 # ===============================================
 # ============== install resources ==============
-define this_rules
+define this__rules
 install::
 $(.RECIPEPREFIX)$(a)for i in $(patsubst $(d)../res/%,/%,$(shell find $(d)../res -type f -name "*")); do \
 		install -d $(DESTDIR)$(PREFIX)/share/$(this_name)$$$${i%/*}; \
 		install -m 644 $(d)../res$$$$i $(DESTDIR)$(PREFIX)/share/$(this_name)$$$$i; \
 	done
 endef
-$(eval $(this_rules))
+$(eval $(this__rules))
 
 # =========================================
 # ============== application ==============
-define this__thermostat_rules
+define thermostat_rules
     $$(eval $$(prorab-clear-this-vars))
 
     this_name := thermostat-$1-$2
@@ -83,7 +85,10 @@ define this__thermostat_rules
 
 endef
 
-# $(eval $(call this__thermostat_rules,opengl,xorg))
-$(eval $(call this__thermostat_rules,opengles,xorg))
-# $(eval $(call this__thermostat_rules,opengl,wayland))
-$(eval $(call this__thermostat_rules,opengles,wayland))
+# $(eval $(call thermostat_rules,opengl,xorg))
+$(eval $(call thermostat_rules,opengles,xorg))
+# $(eval $(call thermostat_rules,opengl,wayland))
+$(eval $(call thermostat_rules,opengles,wayland))
+
+# clean up
+thermostat_rules :=
