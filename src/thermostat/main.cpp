@@ -26,7 +26,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 namespace thermostat {
 
 const ruisapp::application_factory app_fac([](auto executbale, auto args) {
-	return create_application(executbale, args);
+	return make_application(executbale, args);
 });
 
 } // namespace thermostat

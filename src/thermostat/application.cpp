@@ -35,7 +35,8 @@ using namespace std::string_view_literals;
 
 using namespace thermostat;
 
-application::application(bool window, std::string_view res_path) :
+application::application(bool window, //
+	std::string_view res_path) :
 	ruisapp::application( //
 		"thermostat"s,
 		[]() {
@@ -57,7 +58,10 @@ application::application(bool window, std::string_view res_path) :
 	this->gui.set_root(c);
 }
 
-std::unique_ptr<application> thermostat::create_application(std::string_view executable, utki::span<const char*> args)
+std::unique_ptr<application> thermostat::make_application(
+	std::string_view executable, //
+	utki::span<std::string_view> args
+)
 {
 	bool window = false;
 
