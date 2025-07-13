@@ -39,11 +39,9 @@ application::application(bool window, //
 	std::string_view res_path) :
 	ruisapp::application( //
 		"thermostat"s,
-		[]() {
-			// NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers)
-			ruisapp::window_params wp(r4::vector2<unsigned>(1080, 1080));
-			return wp;
-		}()
+		{
+			.dims = {1080, 1080}
+		}
 	),
 	res_path(papki::as_dir(res_path))
 {
