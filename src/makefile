@@ -24,7 +24,7 @@ $(info this_srcs = $(this_srcs))
 $(eval $(prorab-build-lib))
 
 define this__rules
-$(abspath $(d)$(this__version_cpp)): $(abspath $(d)$(this__root_dir_rel)debian/changelog)
+$(abspath $(d)$(this__version_cpp)): $(abspath $(d)$(this__root_dir_rel)build/debian/changelog)
 $(.RECIPEPREFIX)$(a)mkdir -p $$(dir $$@)
 $(.RECIPEPREFIX)$(a)(cd $(d)$(this__root_dir_rel); echo "extern const char* const program_version = \"$$$$(myci-deb-version.sh)\";" > $$@)
 endef
