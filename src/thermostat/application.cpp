@@ -35,12 +35,16 @@ using namespace std::string_view_literals;
 
 using namespace thermostat;
 
+namespace {
+constexpr auto screen_dim = 1080;
+} // namespace
+
 application::application(bool window, //
 	std::string_view res_path) :
 	ruisapp::application( //
 		"thermostat"s,
 		{
-			.dims = {1080, 1080}
+			.dims = {screen_dim, screen_dim}
 		}
 	),
 	res_path(papki::as_dir(res_path))
