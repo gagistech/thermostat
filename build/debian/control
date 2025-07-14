@@ -20,22 +20,26 @@ Standards-Version: 3.9.2
 Package: thermostat-opengles-xorg
 Section: misc
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends},
+Depends:
+	${shlibs:Depends},
+	${misc:Depends},
 	thermostat-data
 Description: Wall thermostat control demo app.
- Demo application of wall thermostat control.
+	Demo application of wall thermostat control.
 
 Package: thermostat-opengles-wayland
 Section: misc
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends},
+Depends:
+	${shlibs:Depends},
+	${misc:Depends},
 	thermostat-data
 Description: Wall thermostat control demo app.
- Demo application of wall thermostat control.
+	Demo application of wall thermostat control.
 
 Package: thermostat-data
 Section: misc
 Architecture: all
 Depends: ${misc:Depends}
 Description: Wall thermostat control demo app data.
- Data files for thermostat.
+	Data files for thermostat.

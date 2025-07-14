@@ -30,8 +30,8 @@ jobs:
           keys-asc: https://apt.llvm.org/llvm-snapshot.gpg.key
       - name: git clone
         uses: myci-actions/checkout@main
-      - name: prepare debian package
-        run: myci-deb-prepare.sh
+      # - name: prepare debian package
+      #   run: myci-deb-prepare.sh
       - name: install deps
         run: myci-deb-install-build-deps.sh
       - name: build
@@ -152,20 +152,20 @@ jobs:
         uses: myci-actions/checkout@main
       - name: set PACKAGE_VERSION
         uses: myci-actions/export-env-var@main
-        with: {name: PACKAGE_VERSION, value: $(myci-deb-version.sh debian/changelog)}
+        with: {name: PACKAGE_VERSION, value: $(myci-deb-version.sh)}
       # - name: prepare debian package
       #   run: myci-deb-prepare.sh
       - name: install deps
         run: myci-deb-install-build-deps.sh
       - name: build
         run: |
+          cd build
           dpkg-buildpackage --unsigned-source --unsigned-changes
-          mv ../*.*deb .
-      - name: upload deb packages to artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ matrix.os }}_${{ matrix.codename }}_${{ matrix.labels[0] }}_debs
-          path: "*.*deb"
+      # - name: upload deb packages to artifacts
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: ${{ matrix.os }}_${{ matrix.codename }}_${{ matrix.labels[0] }}_debs
+      #     path: "*.*deb"
       - name: deploy deb packages
         run: |
           echo "${{ secrets.MYCI_REPO_SSH_KEY }}" > repo_key_rsa && chmod 600 repo_key_rsa
