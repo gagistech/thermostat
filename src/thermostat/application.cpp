@@ -39,13 +39,15 @@ namespace {
 constexpr auto screen_dim = 1080;
 } // namespace
 
-application::application(bool window, //
-	std::string_view res_path) :
+application::application(
+	bool window, //
+	std::string_view res_path
+) :
 	ruisapp::application( //
 		"thermostat"s,
 		{
 			.dims = {screen_dim, screen_dim}
-		}
+}
 	),
 	res_path(papki::as_dir(res_path))
 {

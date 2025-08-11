@@ -19,8 +19,6 @@ this_srcs += $(this__version_cpp) $(filter-out %main.cpp,$(call prorab-src-dir, 
 this_no_install := true
 this_static_lib_only := true
 
-$(info this_srcs = $(this_srcs))
-
 $(eval $(prorab-build-lib))
 
 define this__rules

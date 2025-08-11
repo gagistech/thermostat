@@ -11,9 +11,9 @@
             "group": "build"
         },
         {
-            "label": "build_dbg",
+            "label": "build-dev",
             "type": "shell",
-            "command": "make config=dbg",
+            "command": "make config=dev",
             "problemMatcher": [
                 "$gcc"
             ],
@@ -27,9 +27,9 @@
             "group": "build"
         },
         {
-            "label": "clean_dbg",
+            "label": "clean-dev",
             "type": "shell",
-            "command": "make clean config=dbg",
+            "command": "make clean config=dev",
             "problemMatcher": [],
             "group": "build"
         },
@@ -41,9 +41,9 @@
             "group": "build"
         },
         {
-            "label": "run-app-opengles-xorg_dbg",
+            "label": "run-app-opengles-xorg-dev",
             "type": "shell",
-            "command": "make run-app-opengles-xorg config=dbg",
+            "command": "make run-app-opengles-xorg config=dev",
             "problemMatcher": [],
             "group": "build"
         },
@@ -55,9 +55,9 @@
             "group": "build"
         },
         {
-            "label": "run-app-opengles-wayland_dbg",
+            "label": "run-app-opengles-wayland-dev",
             "type": "shell",
-            "command": "make run-app-opengles-wayland config=dbg",
+            "command": "make run-app-opengles-wayland config=dev",
             "problemMatcher": [],
             "group": "build"
         },
@@ -69,9 +69,9 @@
             "group": "build"
         },
         {
-            "label": "test_dbg",
+            "label": "test-dev",
             "type": "shell",
-            "command": "make test config=dbg",
+            "command": "make test config=dev",
             "problemMatcher": [],
             "group": "build"
         },
@@ -79,6 +79,13 @@
             "label": "format",
             "type": "shell",
             "command": "make format",
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "lint",
+            "type": "shell",
+            "command": "make config=lint && make config=lint test",
             "problemMatcher": [],
             "group": "build"
         }
