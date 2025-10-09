@@ -40,26 +40,30 @@ constexpr auto screen_dim = 1080;
 } // namespace
 
 application::application(
-	bool window, //
+	bool windowed, //
 	std::string_view res_path
 ) :
-	ruisapp::application( //
-		"thermostat"s,
-		{
-			.dims = {screen_dim, screen_dim}
-}
-	),
+	ruisapp::application({
+		.name = "thermostat"s //
+	}),
 	res_path(papki::as_dir(res_path))
 {
-	this->set_fullscreen(!window);
+	auto& win = this->make_window({
+		.dims = {screen_dim, screen_dim},
+		.fullscreen = !windowed
+	});
 
-	this->gui.init_standard_widgets(*this->get_res_file());
+	win.gui.context.get().window().close_handler = [this]() {
+		this->quit();
+	};
 
-	// this->gui.context.get().loader.mount_res_pack(*this->get_res_file(this->res_path));
+	win.gui.init_standard_widgets(*this->get_res_file());
 
-	auto c = make_root_widgets(this->gui.context);
+	// win.gui.context.get().loader.mount_res_pack(*this->get_res_file(this->res_path));
 
-	this->gui.set_root(c);
+	auto c = make_root_widgets(win.gui.context);
+
+	win.gui.set_root(c);
 }
 
 std::unique_ptr<application> thermostat::make_application(
@@ -67,7 +71,7 @@ std::unique_ptr<application> thermostat::make_application(
 	utki::span<std::string_view> args
 )
 {
-	bool window = false;
+	bool windowed = false;
 
 	std::string res_path = []() {
 		papki::fs_file local_share("/usr/local/share/thermostat/"sv);
@@ -82,7 +86,7 @@ std::unique_ptr<application> thermostat::make_application(
 	clargs::parser p;
 
 	p.add("window", "run in window mode", [&]() {
-		window = true;
+		windowed = true;
 	});
 
 	p.add("res-path", "resources path, default = /usr/share/thermostat/", [&](std::string_view v) {
@@ -91,5 +95,5 @@ std::unique_ptr<application> thermostat::make_application(
 
 	p.parse(args);
 
-	return std::make_unique<application>(window, res_path);
+	return std::make_unique<application>(windowed, res_path);
 }
