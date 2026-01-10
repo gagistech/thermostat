@@ -57,7 +57,7 @@ application::application(
 		this->quit();
 	};
 
-	win.gui.init_standard_widgets(*this->get_res_file());
+	win.gui.init_standard_widgets(this->get_res_file());
 
 	// win.gui.context.get().loader.mount_res_pack(*this->get_res_file(this->res_path));
 
