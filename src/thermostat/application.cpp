@@ -24,7 +24,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include <iomanip>
 
 #include <clargs/parser.hpp>
-#include <papki/fs_file.hpp>
+#include <fsif/native_file.hpp>
 #include <ruis/widget/group/overlay.hpp>
 #include <utki/debug.hpp>
 
@@ -46,7 +46,7 @@ application::application(
 	ruisapp::application({
 		.name = "thermostat"s //
 	}),
-	res_path(papki::as_dir(res_path))
+	res_path(fsif::as_dir(res_path))
 {
 	auto& win = this->make_window({
 		.dims = {screen_dim, screen_dim},
@@ -74,7 +74,7 @@ std::unique_ptr<application> thermostat::make_application(
 	bool windowed = false;
 
 	std::string res_path = []() {
-		papki::fs_file local_share("/usr/local/share/thermostat/"sv);
+		fsif::native_file local_share("/usr/local/share/thermostat/"sv);
 
 		if (local_share.exists()) {
 			return local_share.path();
