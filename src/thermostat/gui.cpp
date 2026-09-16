@@ -38,7 +38,7 @@ utki::shared_ref<ruis::widget> make_root_widget_structure(utki::shared_ref<ruis:
 	// clang-format off
 	return m::container(c,
 		{
-			.layout{
+			.layout_params{
 				.dims = {ruis::dim::fill, ruis::dim::fill}
 			},
 			.params{
