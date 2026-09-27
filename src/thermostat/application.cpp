@@ -25,7 +25,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 #include <clargs/parser.hpp>
 #include <fsif/native_file.hpp>
-#include <ruis/standard_widgets.hpp>
+#include <ruis/standard_resources.hpp>
 #include <ruis/widget/group/overlay.hpp>
 #include <utki/debug.hpp>
 
@@ -58,7 +58,7 @@ application::application(
 		this->quit();
 	};
 
-	ruis::init_standard_widgets(
+	ruis::mount_ruis_res_pack(
 		win.gui.context, //
 		this->get_res_file()
 	);
