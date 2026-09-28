@@ -58,11 +58,6 @@ application::application(
 		this->quit();
 	};
 
-	ruis::mount_ruis_res_pack(
-		win.gui.context, //
-		this->get_res_file()
-	);
-
 	// win.gui.context.get().loader().mount_res_pack(this->get_res_file(this->res_path));
 
 	auto c = make_root_widgets(win.gui.context);
